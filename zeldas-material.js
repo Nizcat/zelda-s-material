@@ -1,10 +1,12 @@
 import { LitElement, html, css } from "lit";
 import "./components/select-item";
 import "./components/get-data";
+import "./components/show-data";
 
 export class ZeldasMaterial extends LitElement {
   static properties = {
     selectedItem: { type: String },
+    selectedData: { type: Object, reflect: true },
   };
 
   static styles = [
@@ -21,7 +23,8 @@ export class ZeldasMaterial extends LitElement {
   ];
   constructor() {
     super();
-    this.selectedItem ="monsters";
+    this.selectedItem = "monsters";
+    this.url = "https://botw-compendium.herokuapp.com/api/v2/category/monsters";
 
     this.addEventListener("selectItem", (e) => {
       this.selectedItem = e.detail["item"];
@@ -29,22 +32,26 @@ export class ZeldasMaterial extends LitElement {
     });
 
     this.addEventListener("ApiData", (e) => {
-      console.log(e.detail.data.data, "trajimos");
-      this._dataFormat(e.detail.data.data);
+      
+      this.selectedData = e.detail.data.data;
+      
       this.requestUpdate();
     });
   }
-
- 
 
   render() {
     return html`
       <select-item></select-item>
       <get-data
-        url="https://botw-compendium.herokuapp.com/api/v2/category/${this.selectedItem}"
+        id="anchor"
+        url="https://botw-compendium.herokuapp.com/api/v2/category/${this
+          .selectedItem}"
         item=${this.selectedItem}
       ></get-data>
+      <show-data .selectedData=${this.selectedData}></show-data>
     `;
   }
+
+
 }
 customElements.define("zeldas-material", ZeldasMaterial);
