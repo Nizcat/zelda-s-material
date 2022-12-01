@@ -16,8 +16,8 @@ export class ZeldasMaterial extends LitElement {
         flex-direction: column;
         background-color: black;
         color: white;
-        width: 90vw;
-        height: 90vh;
+        width: 100vw;
+        height: 100vh;
       }
     `,
   ];
@@ -32,9 +32,7 @@ export class ZeldasMaterial extends LitElement {
     });
 
     this.addEventListener("ApiData", (e) => {
-      
       this.selectedData = e.detail.data.data;
-      
       this.requestUpdate();
     });
   }
@@ -43,9 +41,7 @@ export class ZeldasMaterial extends LitElement {
     return html`
       <select-item></select-item>
       <get-data
-        id="anchor"
-        url="https://botw-compendium.herokuapp.com/api/v2/category/${this
-          .selectedItem}"
+        url="https://botw-compendium.herokuapp.com/api/v2/category/${this.selectedItem}"
         item=${this.selectedItem}
       ></get-data>
       <show-data .selectedData=${this.selectedData}></show-data>

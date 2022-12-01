@@ -15,6 +15,7 @@ export default class SelectItem extends LitElement {
 
   constructor() {
     super();
+    this.item="monsters";
   }
 
   _sendItem(item) {
@@ -27,10 +28,11 @@ export default class SelectItem extends LitElement {
     );
   }
 
+
   render() {
     return html`
       <div>
-        <h1>Zelda's monsters</h1>
+        <h1>Zelda's ${this.item}</h1>
         <select name="items" id="items" @change="${this.getItem}">
           <option value="monsters">Monsters</option>
           <option value="equipment">Equipment</option>
