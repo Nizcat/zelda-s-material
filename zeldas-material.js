@@ -6,7 +6,7 @@ import "./components/show-data";
 export class ZeldasMaterial extends LitElement {
   static properties = {
     selectedItem: { type: String },
-    selectedData: { type: Object, reflect: true },
+    selectedData: { type: Object },
   };
 
   static styles = [

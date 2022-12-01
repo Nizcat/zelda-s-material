@@ -8,14 +8,22 @@ export default class SelectItem extends LitElement {
   static styles = [
     css`
       :host {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .title {
+        font-size: 4em;
+      }
+      .select {
+        font-size: 1.5em;
       }
     `,
   ];
 
   constructor() {
     super();
-    this.item="monsters";
+    this.item = "monsters";
   }
 
   _sendItem(item) {
@@ -28,12 +36,16 @@ export default class SelectItem extends LitElement {
     );
   }
 
-
   render() {
     return html`
       <div>
-        <h1>Zelda's ${this.item}</h1>
-        <select name="items" id="items" @change="${this.getItem}">
+        <h1 class="title">Zelda's ${this.item}</h1>
+        <select
+          class="select"
+          name="items"
+          id="items"
+          @change="${this.getItem}"
+        >
           <option value="monsters">Monsters</option>
           <option value="equipment">Equipment</option>
           <option value="materials">Material</option>

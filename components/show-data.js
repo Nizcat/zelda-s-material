@@ -3,10 +3,10 @@ import { LitElement, html, css } from "lit";
 export class ShowData extends LitElement {
   static properties = {
     selectedData: { type: Object },
-  }
+  };
   static styles = [
     css`
-       :host {
+      :host {
         display: flex;
         background-color: black;
         justify-content: center;
@@ -35,45 +35,50 @@ export class ShowData extends LitElement {
       }
       .locationList {
         align-self: flex-start;
+        font-size:1.5em;
+      }
+      .description {
+        width: 15em;
+        text-align: justify;
+        font-size:1.5em;
+      }
+      .title {
+        font-size: 2em;
       }
     `,
   ];
   firstUpdated() {
     super.firstUpdated();
     this.selectedData;
-   
   }
-  constructor(){
-    super()
-    
-    this.selectedData=[{}]
-  }
+  constructor() {
+    super();
 
+    this.selectedData = [{}];
+  }
 
   render() {
     return html`<div class="cardContainer">
-    ${this.selectedData.map(
-      (element) =>          
-        html`
-          ${element.name != "name"
-            ? html` <div class="card">
-                <h2>${element.name}</h2>
-                <img src="${element.image}" class="imageCard" />
-                <p>${element.description}</p>
-                ${element.common_locations != null
-                  ? html` <p>Common locations:</p>
-                      ${element.common_locations.map(
-                        (element) =>
-                          html` <li class="locationList">${element}</li> `
-                      )}`
-                  : html`<p></p>`}
-              </div>`
-            : html``}
-        `
-    )}
-  </div>
-      
-    `;
+      ${this.selectedData.map(
+        (element) =>
+          html`
+            ${element.name != "name"
+              ? html` <div class="card">
+                  <h2 class="title">${element.name}</h2>
+                  <img src="${element.image}" class="imageCard" />
+                  <p class="description">${element.description}</p>
+                  ${element.common_locations != null
+                    ? html` <p class="description">Common locations:</p>
+                        ${element.common_locations.map(
+                          (element) =>
+                            html` <li class="locationList">${element}</li> `
+                        )}`
+                    : html`<p></p>`}
+                </div>`
+              : html``}
+          `
+      )}
+    </div> `;
   }
 }
 customElements.define("show-data", ShowData);
